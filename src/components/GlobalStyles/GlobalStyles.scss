@@ -1,0 +1,127 @@
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap");
+:root {
+  --white: #fff;
+  --text-color: #404040;
+  --primary-color: #f05123;
+  --orange: orange;
+  --dark: #000;
+  --grey-background: #f8f6f8;
+  --grey: #bebebe;
+  --color-card-background: #f3f3f3;
+  --purple-light: #574ee5;
+  --purple-dark: #3026ca;
+  --modal-width: 40rem;
+  --header-image-size: 8rem;
+  --header-height: 7rem;
+  --profile-image-size: 39rem;
+  --active-background-color: #dff1fac2;
+  --active-color: #1a1a1a;
+  --text-hover: #fff;
+  --divider-color: #dee3e9;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // color: var(--text-color);
+}
+
+h1 {
+  font-weight: 800;
+}
+h5 {
+  margin: 0;
+  font-size: 100%;
+}
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+ul {
+  padding: 0rem;
+}
+li {
+  list-style-type: none;
+}
+input {
+  padding: 0px;
+  outline: none;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+}
+.text-opacity {
+  opacity: 0.6;
+}
+.active {
+  // border-bottom: 0.2rem solid var(--purple-light);
+  background-color: var(--active-background-color) !important;
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+.ck-read-only {
+  border: none !important;
+}
+
+.css-1acyv19 {
+  :focus-visible {
+    outline: none;
+  }
+}
+
+.modal-content {
+  padding: 2rem 5rem;
+  border-radius: 5rem;
+}
+.modal-header,
+.modal-footer {
+  border: none;
+}
+.modal-wrapper {
+  width: 100%;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.modal-wrapper-item {
+  text-align: left;
+  color: #292929;
+  width: 100%;
+}
+.modal-wrapper-item-label {
+  display: flex;
+  justify-content: space-between;
+  .modal-item-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 10px 0 10px 8px;
+    display: block;
+  }
+}
+
+.ck-content {
+  min-height: 40rem;
+}
+.title_no_wrap {
+  color: #292929;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  overflow: hidden;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+select {
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.8rem;
+  font-size: 1.6rem;
+}
