@@ -6,7 +6,7 @@ const AdminRoutes = () => {
   const role = localStorage.getItem("role");
   if (!token) {
     return <Navigate to="/login" />;
-  } else if (role !== "Admin") {
+  } else if (role !== "ADMIN") {
     return <Navigate to="/" />;
   } else {
     return <Outlet />;

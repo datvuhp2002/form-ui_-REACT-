@@ -12,11 +12,10 @@ import Image from "~/components/Image";
 import images from "~/public/assets/images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-
+import a from "../Test";
 const cx = classNames.bind(styles);
 
 const Login = () => {
-  const [showForgetPasswordModal, setShowForgetPasswordModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
@@ -33,7 +32,6 @@ const Login = () => {
   const validateForm = () => {
     let isValid = true;
     const errors = {};
-
     if (loginData.email === "" || loginData.email === undefined) {
       errors.email = "Email không được để trống";
     } else {
@@ -44,34 +42,36 @@ const Login = () => {
         errors.email = "Email không đúng";
       }
     }
-
     if (loginData.password === "" || loginData.password === undefined) {
       errors.password = "Mật khẩu không được để trống";
     }
-
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       isValid = false;
     } else {
       setFormErrors({});
     }
-
     return isValid;
   };
 
   const onSubmit = () => {
     let valid = validateForm();
-
     if (valid) {
       dispatch(actions.controlLoading(true));
-
-      requestApi("/auth/login", "POST", loginData)
+      requestApi("/gateway/api/access/login", "POST", loginData)
         .then((res) => {
           dispatch(actions.controlLoading(false));
-          localStorage.setItem("access_token", res.data.access_token);
-          localStorage.setItem("refresh_token", res.data.refresh_token);
-          localStorage.setItem("role", res.data.role);
-          if (res.data.role === "Admin") {
+          console.log(res.data);
+          localStorage.setItem(
+            "access_token",
+            res.data.data.tokens.accessToken
+          );
+          localStorage.setItem(
+            "refresh_token",
+            res.data.data.tokens.refreshToken
+          );
+          localStorage.setItem("role", res.data.data.role);
+          if (res.data.data.role === "ADMIN") {
             navigate("/");
             window.open("/admin/dashboard", "_blank");
           } else {

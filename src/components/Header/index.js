@@ -29,10 +29,8 @@ const Header = ({ isPublicRoute = false, navigator = "/" }) => {
       { title: "Bài viết của bạn", path: "/my-posts" },
     ],
     [{ title: "Luyện tập lập trình", path: "/practice-programming" }],
-    [
-      { title: "Cài đặt", path: `/setting` },
-      { title: "Đăng xuất", onClick: onHandleLogout, path: "/login" },
-    ],
+    [{ title: "Cài đặt", path: `/setting` }],
+    [{ title: "Đăng xuất", onClick: onHandleLogout, path: "/login" }],
   ];
   const handleChange = (e) => {
     const searchValue = e.target.value;
@@ -42,11 +40,12 @@ const Header = ({ isPublicRoute = false, navigator = "/" }) => {
   };
   useEffect(() => {
     try {
-      requestApi("/users/profile", "GET")
+      requestApi("/users/detail", "GET")
         .then((res) => {
+          console.log("DATA", res.data);
           setUserData({
-            ...res.data,
-            avatar: `${process.env.REACT_APP_API_URL}/${res.data.avatar}`,
+            ...res.data.data,
+            avatar: `${res.data.data.avatar}`,
           });
         })
         .catch((err) => {

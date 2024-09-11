@@ -11,13 +11,15 @@ export default function requestApi(
     Accept: "application/json",
     "Content-Type": contentType,
   };
+
   const instance = axios.create({ headers });
 
   instance.interceptors.request.use(
     (config) => {
       const token = localStorage.getItem("access_token");
+      console.log("TOKEN:::", token);
       if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
+        config.headers["authorization"] = token;
       }
       return config;
     },
@@ -28,6 +30,7 @@ export default function requestApi(
     (response) => response,
     async (error) => {
       const originalConfig = error.config;
+
       if (error.response && error.response.status === 419) {
         try {
           const result = await instance.post(
@@ -41,7 +44,8 @@ export default function requestApi(
           localStorage.setItem("access_token", access_token);
           localStorage.setItem("refresh_token", refresh_token);
 
-          originalConfig.headers["Authorization"] = `Bearer ${access_token}`;
+          // Update the original request with the new access_token
+          originalConfig.headers["authorization"] = access_token;
           return instance(originalConfig);
         } catch (err) {
           if (err.response && err.response.status === 400) {
@@ -52,10 +56,12 @@ export default function requestApi(
           return Promise.reject(err);
         }
       }
+
       return Promise.reject(error);
     }
   );
 
+  // Make the API request with the configured instance
   return instance.request({
     method: method,
     url: `${process.env.REACT_APP_API_URL}${endpoint}`,

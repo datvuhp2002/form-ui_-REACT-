@@ -1,0 +1,25 @@
+.wrapper {
+  //   margin-top: calc(var(--header-height) + 1.5rem);
+  .child-1 {
+    display: flex;
+    image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .child-2 {
+    background: #efefef;
+    padding: 3rem 10rem;
+  }
+  .child-3 {
+    justify-content: space-between;
+    .ci {
+      width: 30%;
+      .item {
+        img {
+          float: left;
+        }
+      }
+    }
+  }
+}
